@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.cyy.demo</groupId>
+    <artifactId>spring-cloud-alibaba-demo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>com.example</groupId>
+  <artifactId>demo-client</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>demo-client</name>
+  <description>Demo project for Spring Boot</description>
+
+
+  <dependencies>
+    <!--引入nacos 注册中心的包-->
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-alibaba-nacos-discovery</artifactId>
+    </dependency>
+    <!--引入nacos 配置中心包-->
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

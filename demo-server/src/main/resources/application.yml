@@ -1,0 +1,12 @@
+server:
+  port: 1001
+
+spring:
+  application:
+    # 必须指定服务名称
+    name: demo-server
+  cloud:
+    nacos:
+      discovery:
+        # nacos server的地址
+        server-addr: localhost:8848
