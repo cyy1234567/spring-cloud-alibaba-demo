@@ -3,10 +3,17 @@ server:
 
 spring:
   application:
-    # ±ØĞëÖ¸¶¨·şÎñÃû³Æ
+    # æœåŠ¡å
     name: demo-server
   cloud:
     nacos:
       discovery:
-        # nacos serverµÄµØÖ·
+        # é…ç½®ä¸­å¿ƒåœ°å€
         server-addr: localhost:8848
+        # æŒ‡å®šå‘½åç©ºé—´ å¿…é¡»ç”¨IDé…ç½®
+        namespace: 407cdd4a-0df2-4990-9d88-6279d6793286
+        # æŒ‡å®šé›†ç¾¤
+        cluster-name: SH
+        metadata:
+          version: v1
+
