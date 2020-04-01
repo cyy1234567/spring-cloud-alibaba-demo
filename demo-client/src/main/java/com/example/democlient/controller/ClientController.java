@@ -8,6 +8,9 @@ import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.client.config.NacosConfigService;
 import java.util.concurrent.Executor;
 import javax.annotation.PostConstruct;
+
+import com.example.democlient.FeignClient.DemoServerFeignClient;
+import com.example.democlient.FeignClient.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -22,16 +25,21 @@ import org.springframework.web.client.RestTemplate;
 public class ClientController {
     @Value("${username}")
     private String username;
+    @Autowired
+    private DemoServerFeignClient demoServerFeignClient;
 
     @Autowired
     private NacosConfigManager nacosConfigManager;
+
 
     @Autowired
     private RestTemplate restTemplate;
     @GetMapping("test")
     public String test(){
-        return username;
-        //return restTemplate.getForEntity("http://demo-server/server/test",String.class).getBody();
+        User user = new User();
+        user.setId(200000L);
+        user.setName("tom2000000000");
+        return demoServerFeignClient.getUser(user).toString();
     }
     @PostConstruct
     public String listener(){
@@ -52,10 +60,4 @@ public class ClientController {
         }
         return "listener";
     }
-
-/*    @NacosConfigListener(dataId = "demo-client-dev.yaml")
-    public void test(Object value){
-        System.out.println(value);
-
-    }*/
 }

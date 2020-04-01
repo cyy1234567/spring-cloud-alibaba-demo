@@ -1,5 +1,5 @@
 server:
-  port: 1001
+  port: 1002
 
 spring:
   application:
@@ -11,9 +11,29 @@ spring:
         # 配置中心地址
         server-addr: localhost:8848
         # 指定命名空间 必须用ID配置
-        namespace: 407cdd4a-0df2-4990-9d88-6279d6793286
+        #namespace: 407cdd4a-0df2-4990-9d88-6279d6793286
         # 指定集群
         cluster-name: SH
         metadata:
+          #当前实例的版本
           version: v1
+          #调用的目标实例的版本
+          target-version: v1
+    sentinel:
+      transport:
+        #sentinel服务器地址
+        dashboard: 'http://localhost:8080'
+        #关闭控制台懒加载
+      eager: true
+      filter:
+        # 监控全部地址
+        url-patterns: '/**'
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  level:
+    root: debug

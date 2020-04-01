@@ -22,9 +22,15 @@
     </dependency>
     <!--引入nacos 配置中心包-->
     <dependency>
+    <groupId>com.alibaba.cloud</groupId>
+    <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+  </dependency>
+
+    <dependency>
       <groupId>com.alibaba.cloud</groupId>
-      <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+      <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
     </dependency>
+
   </dependencies>
 
   <build>
