@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -31,10 +32,22 @@ public class ClientController {
     @Autowired
     private NacosConfigManager nacosConfigManager;
 
+    @GetMapping("gateway-test")
+    public String test(@RequestParam(name = "msg",required = false) String msg){
+        return "client-test"+msg;
+    }
 
     @Autowired
     private RestTemplate restTemplate;
     @GetMapping("test")
+    public String restTest(){
+        User user = new User();
+        user.setId(211111111L);
+        user.setName("tom211111111");
+        return restTemplate.postForEntity("http://demo-server/server/get-user",user,Object.class,new Object()).getBody().toString();
+    }
+
+    @GetMapping("test-feign")
     public String test(){
         User user = new User();
         user.setId(200000L);

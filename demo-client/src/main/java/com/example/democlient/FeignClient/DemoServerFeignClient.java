@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 //服务名称
 //@FeignClient(name = "demo-server",configuration = DemoServerFeignConfiguration.class)
-@FeignClient(name = "demo-server")
+@FeignClient(name = "demo-server",fallbackFactory = FeignClientFallBackFactory.class
+        //fallback = FeignClientFallBack.class
+)
 public interface DemoServerFeignClient {
     @PostMapping("/server/get-user")
     public User getUser(@RequestBody User user);

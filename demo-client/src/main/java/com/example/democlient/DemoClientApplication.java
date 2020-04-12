@@ -1,5 +1,6 @@
 package com.example.democlient;
 
+import com.alibaba.cloud.sentinel.annotation.SentinelRestTemplate;
 import com.alibaba.nacos.api.config.ConfigService;
 import com.alibaba.nacos.api.config.annotation.NacosConfigListener;
 import com.alibaba.nacos.client.config.NacosConfigService;
@@ -18,12 +19,16 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableFeignClients(defaultConfiguration = DemoServerFeignConfiguration.class)
 public class DemoClientApplication {
-
-    @LoadBalanced
     @Bean
+    @LoadBalanced
+    @SentinelRestTemplate(
+            blockHandler = "intercept",
+            blockHandlerClass = MyBlockHandlerClass.class
+    )
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
 
 
     public static void main(String[] args) {

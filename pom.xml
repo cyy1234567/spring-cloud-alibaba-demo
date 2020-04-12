@@ -22,6 +22,7 @@
   <modules>
     <module>demo-server</module>
     <module>demo-client</module>
+    <module>gateway</module>
   </modules>
 
   <dependencyManagement>
@@ -30,7 +31,7 @@
       <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
-        <version>Hoxton.SR3</version>
+        <version>Hoxton.RELEASE</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -45,11 +46,7 @@
   </dependencyManagement>
 
   <dependencies>
-    <!--所有的子项目都是spring-boot项目-->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
