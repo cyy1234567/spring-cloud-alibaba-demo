@@ -2,6 +2,7 @@ package com.example;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
+import org.springframework.cloud.gateway.filter.OrderedGatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractNameValueGatewayFilterFactory;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ public class PreLogGatewayFilterFactory extends AbstractNameValueGatewayFilterFa
     @Override
     public GatewayFilter apply(NameValueConfig config) {
 
-        return ((exchange,chain) -> {
+        GatewayFilter filter = ((exchange,chain) -> {
             //所有的逻辑都应该写在里面，只有这里能拿到请求对象
             System.out.println("请求进来了。。。。。。。。。。。。。。。。"+config.getName()+"---------"+config.getValue());
             ServerHttpRequest request = exchange
@@ -27,5 +28,6 @@ public class PreLogGatewayFilterFactory extends AbstractNameValueGatewayFilterFa
 
             return chain.filter(modifyExchange);
         });
+        return new OrderedGatewayFilter(filter,10000);
     }
 }
